@@ -1,0 +1,71 @@
+---
+title: "Perform two-way Anova"
+author: "Aniket Roy and Kruitk Shah"
+date: "15/10/2020"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Example
+
+Moth dataset are stored in csv file and then reading csv file to get data from csv file.
+```{r,echo=TRUE}
+data1 <- read.csv('moth.csv')
+data1
+```
+``` {r,echo=TRUE}
+data2<-data.frame("Moth"=data1[,1],"Position"=data1[,2],"lure"=data1[,3])
+data2
+```
+
+## The hypothesis testing problem is:
+
+
+**H0:There is no Significance difference between means of all**
+
+**H1:There is a significant difference among means of all.**
+
+*To check the normality of a data we have to do the shapiro test*
+
+``` {r,echo=TRUE}
+res <- shapiro.test(data2$Moth)
+res
+
+```
+# Testing Normality Graphically
+
+```{r,echo=TRUE}
+qqnorm(data2$Moth)
+
+```
+
+**Bartlett's test is used to test if k samples have equal variances. Equal variances across samples is called homogeneity of variances.**
+
+```{r,echo=TRUE}
+bartlett.test(Moth~Position,data=data2)
+
+bartlett.test(Moth~lure,data=data2)
+
+```
+
+Here in moth by position p-vlaue is 0.568 which is greater than 0.05 so we accept NULL Hypothesis.
+And in moth by lure p-value is 0.8079 which is greater than 0.05 so we accept NULL Hypothesis.
+
+```{r,echo=TRUE}
+twoway <- aov(Moth~Position+lure,data=data2)
+summary(twoway)
+twoway
+```
+
+```{r,echo=TRUE}
+TK <- TukeyHSD(twoway,"Position")
+TK
+plot(TK)
+
+```

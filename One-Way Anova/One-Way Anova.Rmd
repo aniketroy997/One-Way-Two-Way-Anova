@@ -1,0 +1,99 @@
+---
+title: "Perform One-Way Anova"
+author: "Aniket Roy and Krutik Shah"
+date: "01/10/2020"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+------
+
+```{r echo =TRUE}
+data1 <- read.csv('One-Way(Rp).csv')
+data1
+```
+
+## Performing One-Way Anova  
+One-way ANOVA (Analysis of Variance) is used to examine the differences between means of more than two independent samples. It is used when we have a categorical independent variable (treatment) (with more than two categories) and a normally distributed interval or ratio dependent variable.  
+
+H0:There is no difference between means of all three groups.  
+
+Ha:Difference among maens is significant.  
+
+## To Check Normality of data
+
+```{r echo=TRUE}
+result <- shapiro.test(data1$CBA)
+result
+
+result <- shapiro.test(data1$CS)
+result
+
+result <- shapiro.test(data1$BDA)
+result
+```
+
+**As we can see that p-value of CBA,CS and BDA is as follows 0.06392,0.1133 and 0.4309.From this value we can say that all values are more than 0.05 so here We accept NULL Hypothesis.**
+
+```{r echo=TRUE}
+qqnorm(data1$CBA)
+qqline(data1$CBA, distribution=qnorm)
+
+qqnorm(data1$CS)
+qqline(data1$CS, distribution=qnorm) 
+
+qqnorm(data1$BDA)
+qqline(data1$BDA, distribution=qnorm) 
+```
+
+## Testing Homogeneity of Variances  
+
+**Bartlett's test is used to test if k samples have equal variances. Equal variances across samples is called homogeneity of variances.Before applying ANOVA we have to check the assumption about the homogeneity of variances.**  
+
+```{r echo=TRUE}
+result <- data.frame(data1$CBA,data1$CS,data1$BDA)
+res.var <- bartlett.test(list(data1$CBA,data1$CS,data1$BDA))
+res.var
+```
+As p value is greater than 0.05 .We fail to reject the null hypothesis H0 at 5%
+level of significance. We conclude that the variances are equal across samples.
+
+Homogeneity of variance is an assumption underlying both t tests and F tests (analyses of variance, ANOVAs) in which the population variances (i.e., the distribution, or “spread,” of scores around the mean) of two or more samples are considered equal.
+
+
+## One Way Anova  
+
+```{r echo=TRUE}
+st_result <- stack(result)
+res <- oneway.test(values~ind, data = st_result)
+res
+```
+Since p-value which 0.03673 is very less than 0.05 we Accept the Null Hypothesis.
+
+
+## Pair-wise Comparison  
+
+```{r echo=TRUE}
+res.anova <- aov(values~ind, data = st_result)
+summary(res.anova)
+TK <- TukeyHSD(res.anova)
+TK
+plot(TK)
+```
+
+## Linear Model  
+
+```{r,echo="TRUE"}
+model1 <- lm(values ~ ind,data=st_result)
+anova(model1)
+
+tk1 <- TukeyHSD(aov(model1))
+tk1
+plot(tk1)
+```
