@@ -14,6 +14,8 @@ ___
 ### One Way ANOVA:
 
 #### A one way ANOVA is used to compare two means from two independent (unrelated) groups using the F-distribution. The NULL Hypothesis for the test is that the two  are means equal. Therefore, a significant result means that the two means are unequal.
+
+#### if you want to see the shiny app [click here](https://krutikshah.shinyapps.io/Shiny_App_One-Way_Anova/).the sample data set is provided in the repository for data set click here. 
 ___
 ### Limitations of One-Way Anova:
 
