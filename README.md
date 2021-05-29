@@ -15,7 +15,7 @@ ___
 
 #### A one way ANOVA is used to compare two means from two independent (unrelated) groups using the F-distribution. The NULL Hypothesis for the test is that the two  are means equal. Therefore, a significant result means that the two means are unequal.
 
-#### if you want to see the shiny app [click here](https://krutikshah.shinyapps.io/Shiny_App_One-Way_Anova/).the sample data set is provided in the repository for data set click here. 
+#### if you want to try the shiny app [click here](https://krutikshah.shinyapps.io/Shiny_App_One-Way_Anova/).the sample data set is provided in the repository for data set [click here](https://github.com/aniketroy997/One-Way-Two-Way-Anova/blob/main/One-Way%20Anova/One-Way(Rp).csv). 
 ___
 ### Limitations of One-Way Anova:
 
@@ -24,4 +24,10 @@ ___
 ### Two Way ANOVA:
 
 #### A Two Way ANOVA is an extension of the One Way ANOVA. With a One Way, you have one independent variable affecting a dependent variable. With a Two Way ANOVA, there are two independents. Use a two way ANOVA when you have one measurement variable (i.e. a quantitative variable) and two nominal variables. In other words, if your experiment has a quantitative outcome and you have two categorical explanatory variables, a two way ANOVA is appropriate.
+
+#### if you want to try the shiny app [click here](https://krutikshah.shinyapps.io/Shiny_App_Two-Way_Anova/).the sample data set is provided in the repository for data set [click here](https://github.com/aniketroy997/One-Way-Two-Way-Anova/blob/main/Two-Way%20Anova/moth.csv). 
+___
+
+#### if you want to try the merged shiny app [click here](https://krutikshah.shinyapps.io/One-Way_and_Two-Way_Anova_Shinny_App/).
+
 ___
