@@ -1,4 +1,4 @@
-# One-Way-Two-Way-Anova
+# One-Way And Two-Way-Anova
 ___
 ###  what is ANOVA ?  :thinking:
 
